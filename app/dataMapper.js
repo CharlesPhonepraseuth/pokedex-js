@@ -7,20 +7,20 @@ const dataMapper = {
         return client.query(myQuery);
     },
 
-    getPokemonDetails: (numero, callback) => {
+    getPokemonDetails: (numero) => {
         const myQuery = `SELECT * FROM pokemon WHERE numero=$1`;
         const values = [numero];
-        client.query(myQuery, values, callback);
+        return client.query(myQuery, values);
     },
 
-    getPokemonTypes: (numero, callback) => {
+    getPokemonTypes: (numero) => {
         const myQuery = `
             SELECT *
             FROM type t
             JOIN pokemon_type pt ON t.id = pt.type_id
             WHERE pt.pokemon_numero=$1`;
         const values = [numero];
-        client.query(myQuery, values, callback);
+        return client.query(myQuery, values);
     },
 
     getAllTypes: (callback) => {
