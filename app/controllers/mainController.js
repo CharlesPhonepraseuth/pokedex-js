@@ -10,7 +10,10 @@ const mainController = {
                 return res.status(500).send(err);
             };
 
-            console.log(data.rows);
+            // if everything is okay, we send data from data.rows to home view
+            res.render('home', {
+                pokemons: data.rows
+            });
         });
     }
 
