@@ -18,6 +18,16 @@ const mainController = {
     },
 
     pokemonPage: (req, res) => {
+        // we share an object with every views who will contain labels and stats
+        res.locals.statsLabels = {
+            pv: 'PV',
+            attaque: 'Attaque',
+            defense: 'Défense',
+            attaque_spe:'Attaque Spé.',
+            defense_spe:'Défense Spé.',
+            vitesse: 'Vitesse'
+        };
+
         const pokemonNum = req.params.numero;
 
         dataMapper.getPokemonDetails(pokemonNum, (err, data) => {
@@ -31,8 +41,11 @@ const mainController = {
                     console.log(err2);
                     return res.status(500).send(err2);
                 };
-                console.log('POKEMON :: ', data.rows[0]);
-                console.log('TYPES :: ', data2.rows);
+                
+                res.render('details', {
+                    pokemon: data.rows[0],
+                    types: data2.rows
+                  });
             });
         });
     }
