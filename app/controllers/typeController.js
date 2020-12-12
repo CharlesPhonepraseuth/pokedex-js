@@ -13,6 +13,18 @@ const typeController = {
                 types: data.rows
             });
         });
+    },
+
+    pokemonsByType: (req, res) => {
+        const typeId = req.params.typeId;
+        dataMapper.getPokemonsByType(typeId, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send(err);
+            };
+
+            console.log(data.rows);
+        });
     }
 
 };

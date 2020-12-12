@@ -34,7 +34,7 @@ const mainController = {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
-            }
+            };
             // to avoid complex query, we do 2 separate queries
             dataMapper.getPokemonTypes(pokemonNum, (err2, data2) => {
                 if (err2) {
@@ -45,7 +45,7 @@ const mainController = {
                 res.render('details', {
                     pokemon: data.rows[0],
                     types: data2.rows
-                  });
+                });
             });
         });
     }
