@@ -38,22 +38,22 @@ const dataMapper = {
         return client.query(myQuery, values);
     },
 
-    getPokemonByLikeName: (name, callback) => {
+    getPokemonByLikeName: (name) => {
         const myQuery = `
             SELECT *
             FROM pokemon
             WHERE nom ILIKE $1`;
         const values = [`%${name}%`];
-        client.query(myQuery, values, callback);
+        return client.query(myQuery, values);
     },
 
-    getPokemonByNumber: (numero, callback) => {
+    getPokemonByNumber: (numero) => {
         const myQuery = `
             SELECT *
             FROM pokemon
             WHERE numero = $1`;
         const values = [numero];
-        client.query(myQuery, values, callback);
+        return client.query(myQuery, values);
     }
 
 };
