@@ -23,7 +23,9 @@ const typeController = {
                 return res.status(500).send(err);
             };
 
-            console.log(data.rows);
+            res.render('home', {
+                pokemons: data.rows
+            });
         });
     }
 
