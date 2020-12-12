@@ -38,6 +38,16 @@ const teamController = {
             req.session.team.push(data.rows[0]);
             res.redirect('/team');
         });
+    },
+
+    deleteFromTeam: (req, res) => {
+        const pokemonNum = req.params.numero;
+        // we delete pokemon by using filter
+        req.session.team = req.session.team.filter((pkmn) => {
+            // we return every pokemon where the number is different from the selected one
+            return pkmn.numero != pokemonNum;
+        });
+        res.redirect('/team')
     }
 
 };

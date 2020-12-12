@@ -16,6 +16,9 @@
         <img src="/img/<%= pokemon.numero %>.png" alt="Illustration de <%= pokemon.nom %>">
         <span><%= pokemon.nom %></span>
       </a>
+      <div>
+        <a class="link--delete" href="/team/delete/<%= pokemon.numero %>">Supprimer</a>
+      </div>
     </div>
   <% } %>
 
