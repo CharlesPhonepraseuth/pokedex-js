@@ -23,9 +23,9 @@ const dataMapper = {
         return client.query(myQuery, values);
     },
 
-    getAllTypes: (callback) => {
+    getAllTypes: () => {
         const myQuery = "SELECT * FROM type";
-        client.query(myQuery, callback);
+        return client.query(myQuery);
     },
 
     getPokemonsByType: (typeId, callback) => {

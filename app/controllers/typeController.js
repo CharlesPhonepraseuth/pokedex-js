@@ -2,17 +2,17 @@ const dataMapper = require('../dataMapper');
 
 const typeController = {
     
-    typesPage: (req, res) => {
-        dataMapper.getAllTypes((err, data) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).send(err);
-            }
-
+    typesPage: async (req, res) => {
+        try {
+            const allPokemonTypes = await dataMapper.getAllTypes();
+            
             res.render('types', {
-                types: data.rows
+                types: allPokemonTypes.rows
             });
-        });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).send(err);
+        };
     },
 
     pokemonsByType: (req, res) => {
