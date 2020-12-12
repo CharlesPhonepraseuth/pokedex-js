@@ -48,6 +48,16 @@ const mainController = {
                 });
             });
         });
+    },
+
+    page404: (req, res) => {
+        res.render('404', {
+            notFound: [
+                ['p', 'a', 'g', 'e'],
+                ['n', 'o', 't'],
+                ['f', 'o', 'u', 'n', 'd']
+            ]
+        });
     }
 
 };

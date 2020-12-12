@@ -20,4 +20,7 @@ router.get('/team/delete/:numero', teamController.deleteFromTeam);
 
 router.post('/search', searchController.searchResults);
 
+// at the end, we add the 404 not found page
+router.use( mainController.page404 );
+
 module.exports = router;

@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+
+    <% for (let words of notFound) { %>
+        <div class='notFound'>
+            <% for (let letter of words ) { %>
+                <img src="/img/zarbi_<%= letter %>.png" alt="">
+            <% }%>
+        </div>
+    <% } %>
+
+<%- include('partials/footer') %>
