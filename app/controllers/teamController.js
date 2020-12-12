@@ -3,7 +3,7 @@ const dataMapper = require('../dataMapper');
 const teamController = {
 
     teamPage: (req, res) => {
-        res.render('team',{
+        res.render('team', {
             pokemons: req.session.team
         });
     },
@@ -11,12 +11,30 @@ const teamController = {
     addToTeam: (req, res) => {
         const pokemonNum = req.params.numero;
 
+        // firstly, we check if the pokemon is already in the team
+        const filteredList = req.session.team.filter(pkmn => {
+            return pkmn.numero == pokemonNum;
+        });
+        if (filteredList.length) {
+            return res.render('team', {
+                pokemons: req.session.team,
+                error: 'Ce Pokemon est déjà dans votre équipe.'
+            });
+        };
+        // then, we check if the team is already full (6)
+        if (req.session.team.length >= 6) {
+            return res.render('team', {
+                pokemons: req.session.team,
+                error: 'Votre équipe comporte déjà 6 pokemons.'
+            });
+        };
+
         dataMapper.getPokemonDetails(pokemonNum, (err, data) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
             };
-            
+
             req.session.team.push(data.rows[0]);
             res.redirect('/team');
         });

@@ -4,6 +4,12 @@
     Aucun pokemon dans votre équipe !
   <% } %>
 
+  <% if(locals.error) { %>
+    <div class="row">
+        <%=error%>
+    </div>
+  <% } %>
+
   <% for(let pokemon of pokemons) { %>
     <div class="thumbnail">
       <a href="/pokemon/<%= pokemon.numero %>">
