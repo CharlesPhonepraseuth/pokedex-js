@@ -134,6 +134,11 @@ main div.row--details div.details {
     color: violet;
 }
 
+.link--delete {
+    color: violet;
+    font-size: 12px;   
+}
+
 .link--type {
     padding: 25px;
     min-width: 20%;
