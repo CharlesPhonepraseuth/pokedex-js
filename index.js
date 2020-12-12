@@ -28,6 +28,11 @@ app.use( (req, res, next) => {
   next();
 });
 
+// we add urlencoded to treat POST
+app.use(express.urlencoded({
+  extended: true
+}));
+
 // we settup router 
 const router = require('./app/router');
 app.use(router);
