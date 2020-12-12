@@ -45,7 +45,16 @@ const dataMapper = {
             WHERE nom ILIKE $1`;
         const values = [`%${name}%`];
         client.query(myQuery, values, callback);
-      }
+    },
+
+    getPokemonByNumber: (numero, callback) => {
+        const myQuery = `
+            SELECT *
+            FROM pokemon
+            WHERE numero = $1`;
+        const values = [numero];
+        client.query(myQuery, values, callback);
+    }
 
 };
 
