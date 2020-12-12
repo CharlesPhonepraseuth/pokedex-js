@@ -2,19 +2,19 @@ const dataMapper = require('../dataMapper');
 
 const mainController = {
 
-    homePage: (req, res) => {
-        dataMapper.getAllPokemons((err, data) => {
-            // if we found an error, we log this one, and we send back to navigator
-            if (err) {
-                console.log(err);
-                return res.status(500).send(err);
-            };
+    homePage: async (req, res) => {
+        try {
+            const pokemons = await dataMapper.getAllPokemons();
 
             // if everything is okay, we send data from data.rows to home view
             res.render('home', {
-                pokemons: data.rows
+                pokemons: pokemons.rows
             });
-        });
+        } catch (err) {
+            // if we found an error, we log this one, and we send back to navigator
+            console.log(err);
+            return res.status(500).send(err);
+        };
     },
 
     pokemonPage: (req, res) => {

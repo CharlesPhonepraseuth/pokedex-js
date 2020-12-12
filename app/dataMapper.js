@@ -2,9 +2,9 @@ const client = require('./database');
 
 const dataMapper = {
 
-    getAllPokemons: (callback) => {
+    getAllPokemons: () => {
         const myQuery = "SELECT * FROM pokemon";
-        client.query(myQuery, callback);
+        return client.query(myQuery);
     },
 
     getPokemonDetails: (numero, callback) => {
