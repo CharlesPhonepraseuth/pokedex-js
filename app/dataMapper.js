@@ -28,14 +28,14 @@ const dataMapper = {
         return client.query(myQuery);
     },
 
-    getPokemonsByType: (typeId, callback) => {
+    getPokemonsByType: (typeId) => {
         const myQuery = `
             SELECT *
             FROM pokemon p
             JOIN pokemon_type pt ON p.numero=pt.pokemon_numero
             WHERE pt.type_id=$1`;
         const values = [typeId];
-        client.query(myQuery, values, callback);
+        return client.query(myQuery, values);
     },
 
     getPokemonByLikeName: (name, callback) => {

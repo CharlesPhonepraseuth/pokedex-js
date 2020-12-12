@@ -15,18 +15,17 @@ const typeController = {
         };
     },
 
-    pokemonsByType: (req, res) => {
-        const typeId = req.params.typeId;
-        dataMapper.getPokemonsByType(typeId, (err, data) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).send(err);
-            };
+    pokemonsByType: async (req, res) => {
+        try {
+            const typeId = req.params.typeId;
+            const pokemonsByType = await dataMapper.getPokemonsByType(typeId);
 
             res.render('home', {
-                pokemons: data.rows
+                pokemons: pokemonsByType.rows
             });
-        });
+        } catch (error) {
+            return res.status(500).send(err);
+        };
     }
 
 };
