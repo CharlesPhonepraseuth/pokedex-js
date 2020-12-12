@@ -21,6 +21,11 @@ const dataMapper = {
             WHERE pt.pokemon_numero=$1`;
         const values = [numero];
         client.query(myQuery, values, callback);
+    },
+
+    getAllTypes: (callback) => {
+        const myQuery = "SELECT * FROM type";
+        client.query(myQuery, callback);
     }
 
 };
